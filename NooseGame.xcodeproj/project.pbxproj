@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9826C0DF222D2DC70094135F /* FNooseGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9826C0DE222D2DC70094135F /* FNooseGame.cpp */; };
 		9848A911221C95EF0020A061 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9848A910221C95EF0020A061 /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +24,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9826C0DD222D1EEC0094135F /* FNooseGame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FNooseGame.h; sourceTree = "<group>"; };
+		9826C0DE222D2DC70094135F /* FNooseGame.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FNooseGame.cpp; sourceTree = "<group>"; };
 		9848A90D221C95EE0020A061 /* NooseGame */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NooseGame; sourceTree = BUILT_PRODUCTS_DIR; };
 		9848A910221C95EF0020A061 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				9848A910221C95EF0020A061 /* main.cpp */,
+				9826C0DD222D1EEC0094135F /* FNooseGame.h */,
+				9826C0DE222D2DC70094135F /* FNooseGame.cpp */,
 			);
 			path = NooseGame;
 			sourceTree = "<group>";
@@ -119,6 +124,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9848A911221C95EF0020A061 /* main.cpp in Sources */,
+				9826C0DF222D2DC70094135F /* FNooseGame.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
