@@ -11,10 +11,12 @@
 
 // to make syntax Unreal friendly
 using int32 = int;
+using FString = std::string;
 
 FNooseGame::FNooseGame() { Reset(); } // default constructor
 int32 FNooseGame::GetCurrentMistake() const { return MyCurrentMistake; }
 int32 FNooseGame::GetHiddenWordLength() const { return MyHiddenWord.length(); }
+FString FNooseGame::GetWordWithStars() const { return WordWithStars; }
 bool FNooseGame::IsGameWon() const { return bGameIsWon; }
 bool FNooseGame::IsHang() const { return bGameIsHang; }
 
@@ -25,7 +27,7 @@ void FNooseGame::Reset()
     const FString STARS_WORD(HIDDEN_WORD.length(), '*');
     WordWithStars = STARS_WORD;
     WordWithStars[0] = MyHiddenWord[0];
-    WordWithStars[-1] = MyHiddenWord[-1];
+    WordWithStars[WordWithStars.length() - 1] = MyHiddenWord[HIDDEN_WORD.length() - 1];
     MyCurrentMistake = 0;
     bGameIsWon = false;
     bGameIsHang = false;
@@ -169,7 +171,7 @@ void FNooseGame::Hanging( int32 mistake_number )
             std::cout << " __________" << std::endl;
             std::cout << " |/      |" << std::endl;
             std::cout << " |      (_)" << std::endl;
-            std::cout << " |     \\|" << std::endl;
+            std::cout << " |      \\|" << std::endl;
             std::cout << " |       |" << std::endl;
             std::cout << " |      " << std::endl;
             std::cout << " |" << std::endl;
@@ -183,7 +185,7 @@ void FNooseGame::Hanging( int32 mistake_number )
             std::cout << " __________" << std::endl;
             std::cout << " |/      |" << std::endl;
             std::cout << " |      (_)" << std::endl;
-            std::cout << " |     \\|/" << std::endl;
+            std::cout << " |      \\|/" << std::endl;
             std::cout << " |       |" << std::endl;
             std::cout << " |      " << std::endl;
             std::cout << " |" << std::endl;
@@ -197,7 +199,7 @@ void FNooseGame::Hanging( int32 mistake_number )
             std::cout << " __________" << std::endl;
             std::cout << " |/      |" << std::endl;
             std::cout << " |      (_)" << std::endl;
-            std::cout << " |     \\|/" << std::endl;
+            std::cout << " |      \\|/" << std::endl;
             std::cout << " |       |" << std::endl;
             std::cout << " |      / "<< std::endl;
             std::cout << " |" << std::endl;
@@ -211,9 +213,9 @@ void FNooseGame::Hanging( int32 mistake_number )
             std::cout << " __________" << std::endl;
             std::cout << " |/      |" << std::endl;
             std::cout << " |      (_)" << std::endl;
-            std::cout << " |     \\|/" << std::endl;
+            std::cout << " |      \\|/" << std::endl;
             std::cout << " |       |" << std::endl;
-            std::cout << " |      /\\"<< std::endl;
+            std::cout << " |      / \\"<< std::endl;
             std::cout << " |" << std::endl;
             std::cout << "_|___" << std::endl;
             std::cout << "" << std::endl;

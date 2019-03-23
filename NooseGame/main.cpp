@@ -11,6 +11,7 @@
 #include "FNooseGame.h"
 
 
+
 // to make syntax Unreal friendly
 using FText = std::string;
 using int32 = int;
@@ -77,20 +78,20 @@ void PlayGame()
     // Reset game  make a new word
     NGame.Reset();
     
-    while (!NGame.IsGameWon() || !NGame.IsHang()) {
+    while (!NGame.IsGameWon() && !NGame.IsHang()) {
         FText Guess = GetValidGuess();
 
         // submit valid guess to the game, and receive counts
-        //NGame.SubmitValidGuess(Guess);
+        NGame.SubmitValidGuess(Guess);
 
     }
 
     if (NGame.IsGameWon()) {
-        std::cout << "You win!!!.\n";
+        std::cout << "\n\nYou win!!!.\n";
     }
     else
     {
-        std::cout << "You lose ...\n";
+        std::cout << "\n\nYou lose ...\n";
         NGame.Hanging(8);
     }
     //loop until all the letters are not guessed or man will not hang
@@ -114,31 +115,27 @@ FText GetValidGuess()
     FText Guess = "";
     EGuessStatus Status = EGuessStatus::Invalid_Status;
     do {
+        // get a guess from the player
+        int32 CurrentMistake = NGame.GetCurrentMistake();
+        NGame.Hanging(CurrentMistake);
+        std::cout << "Hidden word is: " << NGame.GetWordWithStars() << "\n";
+        std::cout << "Mistake " << CurrentMistake << " of  8 \n";
         std::cout << ". Enter letter or full word: ";
         std::getline(std::cin, Guess);
-        // get a guess from the player
-//        int32 CurrentMistake = NGame.GetCurrentMistake();
-//        NGame.Hanging(CurrentMistake);
-//        FText WordWithStars = NGame.GetWordWithStars();
-//        std::cout << "Hidden word is: \n";
-//        std::cout << WordWithStars;
-//        std::cout << "Try " << CurrentMistake << " of  8";
-//        std::cout << ". Enter letter or full word: ";
-//        std::getline(std::cin, Guess);
-//
-//        // check status and give feedback
-//        Status = NGame.CheckGuessValidity(Guess);
-//        switch (Status) {
-//            case EGuessStatus::Wrong_Length:
-//                std::cout << "Please enter a one letter or a " << NGame.GetHiddenWordLength() << " letter word.\n\n";
-//                break;
-//            case EGuessStatus::Not_Lowercase:
-//                std::cout << "Please enter all lowercase letters.\n\n";
-//                break;
-//            default:
-//                // assume the guess is valid
-//                break;
-//        }
+
+         //check status and give feedback
+        Status = NGame.CheckGuessValidity(Guess);
+        switch (Status) {
+            case EGuessStatus::Wrong_Length:
+                std::cout << "Please enter a one letter or a " << NGame.GetHiddenWordLength() << " letter word.\n\n";
+                break;
+            case EGuessStatus::Not_Lowercase:
+                std::cout << "Please enter all lowercase letters.\n\n";
+                break;
+            default:
+                // assume the guess is valid
+                break;
+        }
     } while (Status != EGuessStatus::OK ||  Guess == "exit"); // keep looping until we get no errors
     return Guess;
 }
